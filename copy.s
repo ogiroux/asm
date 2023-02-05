@@ -5,9 +5,9 @@
 .extern _free
 .extern _strcpy
 _main: 
-        stp     x29, x30, [sp, #-0x10]!
-        add     x29, sp, 0x8
-        str     x19, [sp, #0x0]
+        stp     x29, x30, [sp, #-32]!
+        mov     x29, sp
+        str     x19, [x29, #16]
         mov     x0, 128
         bl      _malloc
         mov     x19, x0
@@ -17,8 +17,8 @@ _main:
         mov     x0, x19
         bl      _free
         mov     w0, wzr
-        ldr     x19, [sp], #0x0
-        ldp     x29, x30, [sp], #0x10
+        ldr     x19, [x29, #16]
+        ldp     x29, x30, [sp], #32
         ret
 .align 4
 hello:
